@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="vieport" content="width=\, inital-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/> 
+        <title>Fetch JSON from GitHubAPI</title>
+    </head>
+</html>
+<body>
+   <h1> What is in repostiory 1?</h1>
+    <p> 
+        as a reminder: <br /> 
+        api url: <span id="api_url"></span><br /> 
+        "name": "test-repository-1"<br /> 
+        <br />
+        <br />
+        and the results from the API requests:  <br />
+        <br />
+        name: <span id="name"></span><br /> 
+        git url: <span id="git_url"></span><br /> 
+        html: <span id="html_url"></span><br /> 
+        description: <span id="description"></span><br /> 
+        topics: <span id="topics"></span><br /> 
+        languages: <span id="languages"></span><br /> 
+        updated at: <span id="updated_at"></span><br /> 
+
+    </p>
+    <script>
+        const api_url = 'https://api.github.com/repos/faketechlabsberlin/test-repository-1';
+        async function getData() {
+            const response = await fetch(api_url);
+            const data = await response.json();
+            document.getElementById("api_url").textContent = api_url;
+            document.getElementById("git_url").textContent = data.git_url;
+            document.getElementById("html_url").textContent = data.html_url;
+            document.getElementById("name").textContent = data.name;
+            document.getElementById("topics").textContent = data.topics;
+            document.getElementById("description").textContent = data.description;
+            document.getElementById("languages").textContent = data.language;
+            document.getElementById("updated_at").textContent = data.updated_at;
+        }
+
+        getData();
+    </script>
+
+</body>
